@@ -1,0 +1,39 @@
+package com.payFlowApp.payflow_api.service;
+
+
+import com.payFlowApp.payflow_api.entity.User;
+import com.payFlowApp.payflow_api.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public User registerUser(User user){
+        return userRepository.save(user);
+    }
+
+    public List<User> getAllUsers(){
+        return userRepository.findAll();
+    }
+
+    public Optional<User> getUserById(Long id){
+        return userRepository.findById(id);
+    }
+
+    public Optional<User> findByUpiId(String UpiId){
+        return userRepository.findByUpiId(UpiId);
+    }
+
+    public void deleteUserById(Long id){
+        userRepository.deleteById(id);
+    }
+
+}
